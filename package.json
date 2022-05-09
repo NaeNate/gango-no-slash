@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "watch": "tsc --watch",
+    "dev": "nodemon dist/index.js",
+    "start": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
