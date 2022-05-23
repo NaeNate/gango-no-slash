@@ -1,6 +1,6 @@
-import { Message } from "discord.js"
+import { Client, Message } from "discord.js"
 
-export type executeType = (message: Message) => Promise<void>
+export type executeType = (message: Message, client: Client) => Promise<void>
 
 export type commandType = {
   name: string

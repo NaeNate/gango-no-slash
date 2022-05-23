@@ -25,11 +25,11 @@ client.on("messageCreate", (message) => {
   if (!message.content.startsWith("?")) return
 
   try {
-    commands[message.content.substring(1)](message)
+    commands[message.content.substring(1).split(" ")[0]](message, client)
   } catch (e) {
-    message.reply(
-      "You probably used a command wrong. If you're sure you didn't message Biinge#7203"
-    )
+    message.reply("Error - Contact Biinge#7203")
+
+    console.log(e)
   }
 })
 
