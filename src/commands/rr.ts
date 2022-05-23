@@ -18,13 +18,35 @@ const command: commandType = {
       roleIds.push(line.split("&")[1].split(">")[0])
     })
 
-    for (const emoji of emojis) {
+    emojis.forEach((emoji) => {
       reactionMessage.react(emoji)
-    }
+    })
 
-    // setTimeout(() => {
-    //   message.delete()
-    // }, 1000)
+    const collector = reactionMessage.createReactionCollector({ dispose: true })
+
+    collector.on("collect", async (reaction, user) => {
+      if (user.bot) return
+
+      const member = await message.guild!.members.fetch(user.id)
+
+      member.roles.add(
+        roleIds[emojis.findIndex((emojij) => emojij === reaction.emoji.name)]
+      )
+    })
+
+    collector.on("remove", async (reaction, user) => {
+      if (user.bot) return
+
+      const member = await message.guild!.members.fetch(user.id)
+
+      member.roles.remove(
+        roleIds[emojis.findIndex((emojij) => emojij === reaction.emoji.name)]
+      )
+    })
+
+    setTimeout(() => {
+      message.delete()
+    }, 1000)
   },
 }
 
