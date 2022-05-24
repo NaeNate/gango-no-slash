@@ -4,14 +4,14 @@ const command: commandType = {
   name: "rr",
 
   execute: async (message) => {
-    const messageId = message.content.split(" ")[1]
-
-    const reactionMessage = await message.channel.messages.fetch(messageId)
+    const reactionMessage = await message.channel.messages.fetch(
+      message.content.split(" ")[1]
+    )
 
     const lines = reactionMessage.content.split("\n")
 
-    const emojis: string[] = [],
-      roleIds: string[] = []
+    const emojis: string[] = []
+    const roleIds: string[] = []
 
     lines.forEach((line) => {
       emojis.push(line.split(" ")[0])
@@ -44,9 +44,7 @@ const command: commandType = {
       )
     })
 
-    setTimeout(() => {
-      message.delete()
-    }, 1000)
+    message.delete()
   },
 }
 
