@@ -1,11 +1,11 @@
 {
   "scripts": {
-    "watch": "tsc --watch",
-    "dev": "nodemon dist/index.js",
+    "dev": "nodemon src/index.ts",
     "start": "tsc && node dist/index.js"
   },
   "dependencies": {
-    "discord.js": "^13.6.0"
+    "discord.js": "^13.6.0",
+    "mongoose": "^6.3.4"
   },
   "devDependencies": {
     "dotenv": "^16.0.0"

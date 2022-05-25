@@ -1,6 +1,7 @@
 import { Client, Intents } from "discord.js"
 import "dotenv/config"
 import { readdirSync } from "fs"
+import mongoose from "mongoose"
 import { executeType } from "./types"
 
 const client = new Client({
@@ -13,7 +14,7 @@ const client = new Client({
 
 const commands: { [key: string]: executeType } = {}
 
-client.on("ready", () => {
+client.once("ready", async () => {
   console.clear()
 
   for (const file of readdirSync(__dirname + "/commands")) {
@@ -21,6 +22,8 @@ client.on("ready", () => {
 
     commands[name] = execute
   }
+
+  await mongoose.connect(process.env.MONGO!, { keepAlive: true })
 
   console.log("READY")
 })

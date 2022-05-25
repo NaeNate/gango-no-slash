@@ -4,9 +4,9 @@ const command: commandType = {
   name: "rr",
 
   execute: async (message) => {
-    const reactionMessage = await message.channel.messages.fetch(
-      message.content.split(" ")[1]
-    )
+    const messageId = message.content.split(" ")[1]
+
+    const reactionMessage = await message.channel.messages.fetch(messageId)
 
     const lines = reactionMessage.content.split("\n")
 
