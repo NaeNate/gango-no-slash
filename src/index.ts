@@ -23,7 +23,10 @@ client.once("ready", async () => {
     commands[name] = execute
   }
 
-  await mongoose.connect(process.env.MONGO!, { keepAlive: true })
+  // await mongoose.connect(process.env.MONGO!, {
+  //   keepAlive: true,
+  //   dbName: "data",
+  // })
 
   console.log("READY")
 })
